@@ -37,5 +37,26 @@ with open("server_log.txt", "r") as f:
         if error_pattern.match(code):
             error_count += 1
 
+from collections import Counter
+
+unique_ips = set()
+code_counter = Counter()
+level_counter = Counter()
+
+with open("server_log.txt", "r") as f:
+    f.readline()
+
+    for line in f:
+        parts = [p.strip() for p in line.split("|")]
+        if len(parts) != 5:
+            continue
+
+        _, level, _, ip, code = parts
+
+        unique_ips.add(ip)
+        code_counter[code] += 1
+        level_counter[level] += 1
+
+
 
 
