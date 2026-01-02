@@ -57,6 +57,20 @@ with open("server_log.txt", "r") as f:
         code_counter[code] += 1
         level_counter[level] += 1
 
+with open("log_summary.txt", "w") as out:
+    out.write("SERVER LOG SUMMARY\n")
+    out.write("=================\n\n")
+    out.write(f"Unique IPs: {len(unique_ips)}\n\n")
+
+    out.write("HTTP Code Frequency:\n")
+    for code, count in code_counter.items():
+        out.write(f"{code}: {count}\n")
+
+    out.write("\nLog Level Frequency:\n")
+    for level, count in level_counter.items():
+        out.write(f"{level}: {count}\n")
+
+
 
 
 
